@@ -10,7 +10,7 @@ import { OrderComponent } from './order/order.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { RegisterComponent } from './register/register.component';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './admin/dashbroad/admin.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { multicast } from 'rxjs';
+import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { multicast } from 'rxjs';
     HomeComponent,
     OrderConfirmComponent,
     PageNotFoundComponent,
+    ManagerProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,13 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { RegisterComponent } from './register/register.component';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './admin/dashbroad/admin.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthAuthor } from './guard/auth.author';
+import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
 const routes: Routes = [
   {
     path: '',
@@ -54,6 +55,12 @@ const routes: Routes = [
     title: 'Cart',
     canActivate: [AuthGuard],
     component: CartComponent,
+  },
+  {
+    path: 'admin/products',
+    title: 'Manager Products',
+    canActivate: [AuthAuthor],
+    component: ManagerProductComponent,
   },
   //   {
   //     path: 'contact',
