@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { userDto } from '../dtos/user.dto';
 import { log } from 'console';
-import { UserStoreService } from '../services/user-store-service.service';
+import { AuthService } from '../services/auth.service';
+import { UserDetailService } from '../services/user-detail.service';
 @Component({
   selector: 'app-login',
 
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private userStoreService: UserStoreService
+    private authService: AuthService,
+    private userDetailService: UserDetailService
   ) {}
 
   ngOnInit(): void {
@@ -33,16 +35,20 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.login.value).subscribe({
       next: (response: any) => {
         console.log('next1');
-        // console.log(response);
-        this.userService.saveTokenToStorage(response.token);
-        const userDetail = this.userService.decodedToken();
-        this.userStoreService.setFullNameForStore(userDetail.userName);
-        if(userDetail.role === 'ADMIN'){
-          
-        }
-        this.userStoreService.setRoleForStore(userDetail.role);
-
-        if (userDetail.role === 'ADMIN') {
+        debugger;
+        this.authService.saveToken(response.token);
+        const userDetail = this.authService.decodeToken();
+        localStorage.setItem('userName', userDetail.userName);
+        localStorage.setItem('role', userDetail.role);
+        // this.userDetailService.setUserNameForUserDetail(userDetail.userName);
+        // this.userDetailService.setRoleForUserDetail(userDetail.role);
+        // if (userDetail.role === 'ADMIN') {
+        //   this.router.navigate(['/admin']);
+        // } else {
+        //   this.router.navigate(['/']);
+        // }
+        const role = localStorage.getItem('role');
+        if (role === 'ADMIN') {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/']);

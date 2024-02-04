@@ -14,7 +14,7 @@ export class AuthAuthor implements CanActivate {
   constructor(private router: Router, private userService: UserService) {} // Tiêm UserService
 
   canActivate(): boolean {
-    if (this.userService.isLoggedIn()) {
+    if (localStorage.getItem('role') === 'ADMIN') {
       return true;
     }
     this.router.navigate(['login']);

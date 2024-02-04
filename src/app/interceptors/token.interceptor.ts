@@ -7,14 +7,18 @@ import { Injectable } from '@angular/core'; // Thêm Injectable từ @angular/co
 import { UserService } from '../services/user.service';
 import { Inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
   // Phương thức intercept nhận vào một request và một next handler
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Gọi hàm getToken trong UserService để lấy token
-    const token = this.userService.getToken();
+    const token = this.authService.getToken();
 
     if (token) {
       req = req.clone({

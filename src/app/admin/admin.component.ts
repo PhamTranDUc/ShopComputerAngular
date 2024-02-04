@@ -13,19 +13,20 @@ export class AdminComponent {
   public fullName: string = '';
   constructor(private userService: UserService) {}
   ngOnInit() {
-    this.userService.getAllAccount().subscribe({
-      next: (response: any) => {
-        this.users = response;
-      },
-      complete: () => {},
-      error: (error: any) => {
-        console.log('Error fetching data Accounts: ', error);
-      },
-    });
+    // this.userService.getAllAccount().subscribe({
+    //   next: (response: any) => {
+    //     this.users = response;
+    //   },
+    //   complete: () => {},
+    //   error: (error: any) => {
+    //     console.log('Error fetching data Accounts: ', error);
+    //   },
+    // });
   }
 
-  isAdmin(): Observable<string> {
-    console.log(this.userService.isAdmin());
-    return this.userService.isAdmin();
-  }
+  // isAdmin(): Observable<string> {
+  //   // console.log(this.userService.isAdmin());
+  //   // return this.userService.isAdmin();
+
+  // }
 }

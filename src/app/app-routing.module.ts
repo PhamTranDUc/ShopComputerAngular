@@ -10,7 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
-
+import { AuthAuthor } from './guard/auth.author';
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +42,7 @@ const routes: Routes = [
     path: 'admin',
     title: 'ADMIN - MANAGER',
     component: AdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthAuthor],
   },
   {
     path: 'product-detail/:id',
@@ -52,6 +52,7 @@ const routes: Routes = [
   {
     path: 'cart',
     title: 'Cart',
+    canActivate: [AuthGuard],
     component: CartComponent,
   },
   //   {
