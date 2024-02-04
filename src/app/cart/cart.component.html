@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="container">
+  <div class="intro-section">
+    <h1>Giỏ hàng của bạn</h1>
+  </div>
+  <form>
+    <!-- Thêm form và gán formGroup -->
+    <div class="row">
+      <div class="col-11">
+        <h2 class="product-order">Sản phẩm trong giỏ hàng</h2>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th scope="col" class="text-start col-5">Sản phẩm</th>
+              <th scope="col" class="col-2">Số lượng</th>
+              <th scope="col" class="col-2">Đơn giá</th>
+              <th scope="col" class="col-2">Tổng giá</th>
+              <th scope="col" class="col-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of products">
+              <tr>
+                <td>
+                  <img
+                    height="200px"
+                    [src]="item.thumbnail"
+                    alt="Product Image"
+                    class="product-image"
+                  />
+                </td>
+                <td>
+                  <div class="product-info">
+                    <span class="product-name">{{ item.name }}</span>
+                  </div>
+                </td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price | number : "1.2-2" }}</td>
+                <td>
+                  {{ item.price * item.quantity | number : "1.2-2" }}
+                </td>
+
+                <td>
+                  <button type="button" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <div class="text-start mt-3">
+          <!-- <h4 class="header-text text-end">
+            Tổng giá: {{ totalAmount | number : "1.2-2" }}
+          </h4> -->
+        </div>
+        <div class="text-start mt-3">
+          <button class="btn btn-gradient" type="button">Đặt hàng</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>
