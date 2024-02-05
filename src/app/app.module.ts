@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -22,6 +22,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { multicast } from 'rxjs';
 import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
+import { FormProduct } from './admin/dashbroad/formProduct.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,15 +39,17 @@ import { ManagerProductComponent } from './admin/manager-product/manager-product
     OrderConfirmComponent,
     PageNotFoundComponent,
     ManagerProductComponent,
+    FormProduct,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule,
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    CKEditorModule,
   ],
   providers: [
     {

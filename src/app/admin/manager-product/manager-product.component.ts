@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product-service.service';
 import { faFile , faPenToSquare , faTrash} from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-manager-product',
   templateUrl: './manager-product.component.html',
@@ -15,7 +16,7 @@ export class ManagerProductComponent {
   currentPage: number = 1;
   visiblePage: number[] = [];
   totalPages: number = 0;
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
   ngOnInit() {
     this.getAll(this.currentPage);
   }
@@ -57,5 +58,9 @@ export class ManagerProductComponent {
     return new Array(endPage - startPage + 1)
       .fill(0)
       .map((_, index) => startPage + index);
+  }
+
+  addProduct(){
+    this.router.navigate(['admin/formProduct']);
   }
 }

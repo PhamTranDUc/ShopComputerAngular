@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthAuthor } from './guard/auth.author';
 import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
+import { FormProduct } from './admin/dashbroad/formProduct.component';
 const routes: Routes = [
   {
     path: '',
@@ -61,6 +62,12 @@ const routes: Routes = [
     title: 'Manager Products',
     canActivate: [AuthAuthor],
     component: ManagerProductComponent,
+  },
+  {
+    path: 'admin/formProduct',
+    title: 'Add Product',
+    canActivate: [AuthAuthor],
+    component: FormProduct,
   },
   //   {
   //     path: 'contact',
