@@ -30,4 +30,10 @@ export class ProductService {
       { params }
     );
   }
+
+  deleteProductById(id: number) {
+    return this.http.delete<any>(
+      'http://localhost:8080/ShopBookPTD/api/v1/products/' + id
+    );
+  }
 }

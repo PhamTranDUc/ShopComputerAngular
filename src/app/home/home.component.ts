@@ -12,7 +12,7 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent {
   public products: any[] = [];
-  size: number = 2;
+  size: number = 12;
   currentPage: number = 1;
   visiblePage: number[] = [];
   totalPages: number = 0;

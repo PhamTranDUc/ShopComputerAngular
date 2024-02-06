@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product-service.service';
-import { faFile , faPenToSquare , faTrash} from '@fortawesome/free-solid-svg-icons';
+import {
+  faFile,
+  faPenToSquare,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-manager-product',
@@ -9,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class ManagerProductComponent {
   iconDetail = faFile;
-  iconUpdate= faPenToSquare;
-  iconDelete= faTrash
+  iconUpdate = faPenToSquare;
+  iconDelete = faTrash;
   public products: any[] = [];
   size: number = 8;
   currentPage: number = 1;
@@ -60,7 +64,34 @@ export class ManagerProductComponent {
       .map((_, index) => startPage + index);
   }
 
-  addProduct(){
+  addProduct() {
     this.router.navigate(['admin/formProduct']);
+  }
+
+  deleteProductById(id: number) {
+    this.productService.deleteProductById(id).subscribe({
+      next: (response: any) => {
+        alert('Delete product id = ' + id + ' success !!!');
+        this.getAll(0);
+      },
+      complete: () => {},
+      error: (error: any) => {
+        alert('Error Delete product: ');
+        console.error(error);
+      },
+    });
+  }
+
+  getProductDetail(id: number) {
+    const products = this.productService.getProductDetail(id).subscribe({
+      next: (response: any) => {
+        this.router.navigate(['/admin/product-detail/' + id]);
+      },
+      complete: () => {},
+      error: (error: any) => {
+        alert('Error view product detail ');
+        console.error(error);
+      },
+    });
   }
 }

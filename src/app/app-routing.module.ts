@@ -13,6 +13,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { AuthAuthor } from './guard/auth.author';
 import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
 import { FormProduct } from './admin/dashbroad/formProduct.component';
+import { ProductDetailComponent } from './admin/dashbroad/product-detail.component';
 const routes: Routes = [
   {
     path: '',
@@ -52,6 +53,11 @@ const routes: Routes = [
     component: DetailProductComponent,
   },
   {
+    path: 'admin/product-detail/:id',
+    title: 'Product Detail',
+    component: ProductDetailComponent,
+  },
+  {
     path: 'cart',
     title: 'Cart',
     canActivate: [AuthGuard],
@@ -69,49 +75,6 @@ const routes: Routes = [
     canActivate: [AuthAuthor],
     component: FormProduct,
   },
-  //   {
-  //     path: 'contact',
-  //     title: 'Contact',
-  //     component: ContactComponent,
-  //     canActivate: [
-  //       () => {
-  //         return false;
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     path: 'login',
-  //     title: 'Login',
-  //     component: LoginComponent,
-  //   },
-  //   {
-  //     path: 'home',
-  //     component: HomeComponent,
-  //   },
-  //   {
-  //     path: 'admin',
-  //     component: AdminManagerComponent,
-  //     // canActivate: [
-  //     //   () => {
-  //     //     return false;
-  //     //   },
-  //     // ],
-  //   },
-  //   {
-  //     path: 'admin/users',
-  //     title: 'Admin - Users',
-  //     component: UserComponent,
-  //   },
-  //   {
-  //     path: 'admin/list-book',
-  //     title: 'Admin - Books',
-  //     component: BookComponent,
-  //   },
-  //   {
-  //     path: 'admin/list-user',
-  //     title: 'Admin - Users',
-  //     component: UserComponent,
-  //   },
   {
     path: '**',
     title: '404 - Page Not Found',

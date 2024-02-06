@@ -477,9 +477,11 @@
                     <button
                       type="button"
                       class="btn btn-primary"
-                      title="Show detail product"
+                      title="Show detail product" (click)="getProductDetail(product.id)"
                     >
-                      <fa-icon [icon]="iconDetail"></fa-icon>
+                      <fa-icon
+                        [icon]="iconDetail"
+                      ></fa-icon>
                     </button>
                     <button
                       type="button"
@@ -492,6 +494,7 @@
                       type="button"
                       class="btn btn-danger"
                       title="Delete this product"
+                      (click)="deleteProductById(product.id)"
                     >
                       <fa-icon [icon]="iconDelete"></fa-icon>
                     </button>

@@ -24,6 +24,7 @@ import { multicast } from 'rxjs';
 import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
 import { FormProduct } from './admin/dashbroad/formProduct.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ProductDetailComponent } from './admin/dashbroad/product-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     PageNotFoundComponent,
     ManagerProductComponent,
     FormProduct,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
