@@ -477,16 +477,16 @@
                     <button
                       type="button"
                       class="btn btn-primary"
-                      title="Show detail product" (click)="getProductDetail(product.id)"
+                      title="Show detail product"
+                      (click)="getProductDetail(product.id)"
                     >
-                      <fa-icon
-                        [icon]="iconDetail"
-                      ></fa-icon>
+                      <fa-icon [icon]="iconDetail"></fa-icon>
                     </button>
                     <button
                       type="button"
                       class="btn btn-secondary"
                       title="Update product"
+                      (click)="getFormEditProduct(product.id)"
                     >
                       <fa-icon [icon]="iconUpdate"></fa-icon>
                     </button>

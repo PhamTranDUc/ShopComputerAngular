@@ -94,4 +94,17 @@ export class ManagerProductComponent {
       },
     });
   }
+
+  getFormEditProduct(id: number) {
+    const products = this.productService.getProductDetail(id).subscribe({
+      next: (response: any) => {
+        this.router.navigate(['/admin/edit-product/' + id]);
+      },
+      complete: () => {},
+      error: (error: any) => {
+        alert('Error view product detail ');
+        console.error(error);
+      },
+    });
+  }
 }

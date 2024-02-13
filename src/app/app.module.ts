@@ -25,6 +25,7 @@ import { ManagerProductComponent } from './admin/manager-product/manager-product
 import { FormProduct } from './admin/dashbroad/formProduct.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ProductDetailComponent } from './admin/dashbroad/product-detail.component';
+import { FormProductEdit } from './admin/dashbroad/formProductEdit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { ProductDetailComponent } from './admin/dashbroad/product-detail.compone
     ManagerProductComponent,
     FormProduct,
     ProductDetailComponent,
+    FormProductEdit,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { AuthAuthor } from './guard/auth.author';
 import { ManagerProductComponent } from './admin/manager-product/manager-product.component';
 import { FormProduct } from './admin/dashbroad/formProduct.component';
 import { ProductDetailComponent } from './admin/dashbroad/product-detail.component';
+import { FormProductEdit } from './admin/dashbroad/formProductEdit.component';
 const routes: Routes = [
   {
     path: '',
@@ -56,6 +57,11 @@ const routes: Routes = [
     path: 'admin/product-detail/:id',
     title: 'Product Detail',
     component: ProductDetailComponent,
+  },
+  {
+    path: 'admin/edit-product/:id',
+    title: 'Edit Product',
+    component: FormProductEdit,
   },
   {
     path: 'cart',

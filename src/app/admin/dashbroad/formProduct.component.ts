@@ -22,6 +22,8 @@ export class FormProduct {
   public fullName: string = '';
   selectedFiles: any;
   thumbnail: any;
+  urls: string[] = [];
+  urlThumbnail: any;
   constructor(
     private userService: UserService,
     private categoryService: CategoryService,
@@ -69,36 +71,37 @@ export class FormProduct {
         alert(`Không thể thêm sản phẩm, lỗi: ${error.error}`);
       },
     });
-    // const urlAddProduct : string ='http://localhost:8080/ShopBookPTD/api/v1/products';
-    // const dataProduct={
-    //   "name" : this.name,
-    //   "description" : this.description,
-    //   "price" : this.price,
-    //   "thumbnail" : "",
-    //   "category_id": this.categorrId
-    // }
-    // const headers= new HttpHeaders({
-    //   'Content-Type': 'application/json'
-    // });
-
-    // this.http.post(urlAddProduct, dataProduct, {headers}).subscribe({
-    //   next: (response: any)=>{
-    //     alert("Add product success !!!");
-    //   },
-    //   complete: () => {
-    //     debugger;
-    //   },
-    //   error: (error: any) => {
-    //     alert(`Cannot add product, error: ${error.error}`);
-    //   },
-    // })
   }
 
   onFileSelected(event: any) {
-    this.selectedFiles = event.target.files;
+    if (event.target.files) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[i]);
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        };
+      }
+      this.selectedFiles = Array.from(event.target.files);
+    } else {
+      this.selectedFiles = null;
+    }
+
+    console.log(this.selectedFiles);
   }
 
   loadThumbnail(event: any) {
+    if (event.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (e: any) => {
+        this.urlThumbnail = e.target.result;
+      };
+    }
     this.thumbnail = event.target.files;
+  }
+  removeImage(index: number) {
+    this.urls.splice(index, 1);
+    this.selectedFiles.splice(index, 1);
   }
 }
