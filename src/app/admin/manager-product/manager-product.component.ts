@@ -67,12 +67,12 @@ export class ManagerProductComponent {
   addProduct() {
     this.router.navigate(['admin/formProduct']);
   }
-
   deleteProductById(id: number) {
     this.productService.deleteProductById(id).subscribe({
-      next: (response: any) => {
+      next: () => {
+        // Thực hiện các tác vụ sau khi xóa thành công (nếu cần)
         alert('Delete product id = ' + id + ' success !!!');
-        this.getAll(0);
+        this.onPageChange(1);
       },
       complete: () => {},
       error: (error: any) => {
@@ -81,7 +81,6 @@ export class ManagerProductComponent {
       },
     });
   }
-
   getProductDetail(id: number) {
     const products = this.productService.getProductDetail(id).subscribe({
       next: (response: any) => {

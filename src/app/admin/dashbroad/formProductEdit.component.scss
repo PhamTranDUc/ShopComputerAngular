@@ -1,0 +1,21 @@
+.image-item {
+  border: 1px solid #eee;
+  margin: 18px;
+}
+
+.image-container {
+  display: flex;
+}
+.btn-remove-image {
+  position: absolute;
+  cursor: pointer;
+  top: -15px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: auto;
+  text-align: center;
+  font-size: auto;
+}

@@ -71,8 +71,9 @@
     <div class="col-md-6">
       <div class="product-details">
         <h2>Thông tin chi tiết sản phẩm</h2>
-        <p>{{ product.description }}</p>
-        <p>Giá: {{ product.price }}</p>
+        <p>Thể loại: {{ product.category.name }}</p>
+        <div [innerHTML]="description"></div>
+        <p>Giá: {{ price }}</p>
         <div class="product-actions">
           <button class="btn btn-primary" (click)="addToCart()">
             Thêm vào giỏ hàng
