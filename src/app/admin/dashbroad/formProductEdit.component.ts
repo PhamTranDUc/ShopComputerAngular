@@ -27,6 +27,7 @@ export class FormProductEdit {
   public fullName: string = '';
   selectedFiles: any;
   thumbnail: any;
+  urls: string[] = [];
   productImage: any[] = [];
   urlThumbnail: any;
   constructor(
@@ -62,7 +63,6 @@ export class FormProductEdit {
           this.loadDataForForm();
           console.log('lay product thanh cong ');
           console.log(this.product);
-          console.log('urls la :' + this.productImage);
         },
         complete: () => {},
         error: (error: any) => {
@@ -112,10 +112,6 @@ export class FormProductEdit {
     });
   }
 
-  onFileSelected(event: any) {
-    this.selectedFiles = event.target.files;
-  }
-
   loadDataForForm() {
     debugger;
     this.name = this.product.name;
@@ -124,6 +120,10 @@ export class FormProductEdit {
     this.categorrId = this.product.categoryId;
     this.urlThumbnail = this.product.thumbnail;
     this.productImage = this.product.productImages;
+    console.log('imagesUrl ' + this.product.productImages);
+    for (let image of this.product.productImages) {
+      this.urls.push(image.imageUrl);
+    }
   }
 
   loadThumbnail(event: any) {
@@ -137,7 +137,25 @@ export class FormProductEdit {
     this.thumbnail = event.target.files;
   }
   removeImage(index: number) {
-    this.productImage.splice(index, 1);
+    this.urls.splice(index, 1);
     this.selectedFiles.splice(index, 1);
+  }
+
+  onFileSelected(event: any) {
+    if (event.target.files) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[i]);
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+          console.log(this.urls.length);
+        };
+      }
+      this.selectedFiles = Array.from(event.target.files);
+    } else {
+      this.selectedFiles = null;
+    }
+
+    console.log(this.selectedFiles);
   }
 }
