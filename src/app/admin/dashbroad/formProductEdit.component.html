@@ -572,7 +572,18 @@
                     class="image-item"
                     style="position: relative"
                   >
-                    <span class="btn-remove-image" (click)="removeImage(i)"
+                    <span class="btn-remove-image" (click)="removeImage(i, url)"
+                      >x</span
+                    >
+                    <img [src]="url" width="100px" />
+                  </div>
+
+                  <div
+                    *ngFor="let url of urlsNew; let i = index"
+                    class="image-item"
+                    style="position: relative"
+                  >
+                    <span class="btn-remove-image" (click)="removeImageNew(i)"
                       >x</span
                     >
                     <img [src]="url" width="100px" />

@@ -25,11 +25,13 @@ export class FormProductEdit {
   listCategory: any[] = [];
   public Editor = ClassicEditor;
   public fullName: string = '';
-  selectedFiles: any;
+  selectedFiles: any[] = [];
   thumbnail: any;
   urls: string[] = [];
+  urlsNew: string[] = [];
   productImage: any[] = [];
   urlThumbnail: any;
+  urlImageDelete: string[] = [];
   constructor(
     private userService: UserService,
     private categoryService: CategoryService,
@@ -96,6 +98,10 @@ export class FormProductEdit {
     if (this.thumbnail) {
       formData.append('thumbnail', this.thumbnail[0], this.thumbnail[0].name);
     }
+    const urlImages = this.urlImageDelete.reduce((result, element) => {
+      return result + element.toString() + ';';
+    }, '');
+    formData.append('urlImages', urlImages);
 
     this.http.put(urlAddProduct + '/' + this.productId, formData).subscribe({
       next: (response: any) => {
@@ -121,9 +127,10 @@ export class FormProductEdit {
     this.urlThumbnail = this.product.thumbnail;
     this.productImage = this.product.productImages;
     console.log('imagesUrl ' + this.product.productImages);
-    for (let image of this.product.productImages) {
-      this.urls.push(image.imageUrl);
+    for (let img of this.productImage) {
+      this.urls.push(img.imageUrl);
     }
+    console.log('urls ban đầu là : ' + this.urls);
   }
 
   loadThumbnail(event: any) {
@@ -136,8 +143,14 @@ export class FormProductEdit {
     }
     this.thumbnail = event.target.files;
   }
-  removeImage(index: number) {
+  removeImage(index: number, url: string) {
+    console.log('index and url :' + index + ' ' + url);
     this.urls.splice(index, 1);
+
+    this.urlImageDelete.push(url);
+  }
+  removeImageNew(index: number) {
+    this.urlsNew.splice(index, 1);
     this.selectedFiles.splice(index, 1);
   }
 
@@ -147,13 +160,13 @@ export class FormProductEdit {
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (e: any) => {
-          this.urls.push(e.target.result);
+          this.urlsNew.push(e.target.result);
           console.log(this.urls.length);
         };
       }
       this.selectedFiles = Array.from(event.target.files);
     } else {
-      this.selectedFiles = null;
+      this.selectedFiles = [];
     }
 
     console.log(this.selectedFiles);
